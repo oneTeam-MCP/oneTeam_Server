@@ -85,6 +85,7 @@ jobs:
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
             JWT_SECRET=${{ secrets.JWT_SECRET }}
             DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
+            SPRING_PROFILES_ACTIVE=prod
             EOF
             chmod 600 /home/ubuntu/server/.env
 
