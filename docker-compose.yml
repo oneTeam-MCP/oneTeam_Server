@@ -1,0 +1,20 @@
+services:
+  app:
+    image: ${DOCKERHUB_USERNAME}/server:latest
+    container_name: server-app
+    env_file:
+      - ./.env
+    ports:
+      - "127.0.0.1:28080:8080"
+    networks:
+      - proxy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health | grep -q '\"status\":\"UP\"'"]
+      interval: 20s
+      timeout: 5s
+      retries: 10
+
+networks:
+  proxy:
+    external: true
