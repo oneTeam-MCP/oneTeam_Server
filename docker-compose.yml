@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   app:
     image: ${DOCKERHUB_USERNAME}/server:latest
@@ -16,6 +18,26 @@ services:
       interval: 20s
       timeout: 5s
       retries: 10
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - proxy
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+    driver: local
 
 networks:
   proxy:
