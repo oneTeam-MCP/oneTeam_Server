@@ -30,7 +30,7 @@ public class SecurityConfig {
     private final String[] ALLOWED_URLS = {
             "/swagger-ui/**",
             "/v3/api-docs/**",
-            "/health",
+            "/actuator/health",
             "/",
             "/api/v1/auth/**",
             "/api/v1/members/**",
