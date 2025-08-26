@@ -6,12 +6,10 @@ services:
     container_name: server-app
     environment:
       SPRING_PROFILES_ACTIVE: prod
-    env_file:
-      - ./.env
+    env_file: ./.env
     ports:
       - "127.0.0.1:28080:8080"
-    networks:
-      - proxy
+    networks: [ proxy ]
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health | grep -q '\"status\":\"UP\"'"]
