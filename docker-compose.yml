@@ -4,6 +4,10 @@ services:
     container_name: server-app
     environment:
       SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATA_REDIS_HOST: ${REDIS_HOST:-redis}
+      SPRING_DATA_REDIS_PORT: ${REDIS_PORT:-6379}
+    depends_on:
+      - redis
     env_file: ./.env
     ports:
       - "127.0.0.1:28080:8080"

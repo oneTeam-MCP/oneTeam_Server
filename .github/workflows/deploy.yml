@@ -86,6 +86,8 @@ jobs:
             JWT_SECRET=${{ secrets.JWT_SECRET }}
             DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
             SPRING_PROFILES_ACTIVE=prod
+            REDIS_HOST=redis
+            REDIS_PORT=6379
             EOF
             chmod 600 /home/ubuntu/server/.env
 
