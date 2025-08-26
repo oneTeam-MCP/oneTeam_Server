@@ -47,7 +47,7 @@ public enum ErrorCode {
     REFRESH_TOKEN_INVALID("TOKEN401", "유효하지 않은 Refresh Token 입니다.", HttpStatus.UNAUTHORIZED),
 
     // User (회원)
-    USER_ALREADY_EXIST("USER400", "이미 회원가입된 유저입니다.", HttpStatus.BAD_REQUEST),
+    USER_ALREADY_EXIST("USER400", "이미 회원가입된 유저입니다.", HttpStatus.CONFLICT),
     USER_NOT_EXIST("USER404", "존재하지 않는 유저입니다.", HttpStatus.NOT_FOUND),
     USER_EMAIL_NOT_EXIST("USER404", "가입된 이메일이 존재하지 않습니다. 다시 입력해주세요.", HttpStatus.NOT_FOUND),
     USER_NOT_VALID("USER404", "유효한 사용자 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
