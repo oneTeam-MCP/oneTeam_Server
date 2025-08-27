@@ -1,10 +1,13 @@
 package oneteam.oneteamserver.domain.notice.dto;
 
 import oneteam.oneteamserver.domain.notice.Notice;
+import oneteam.oneteamserver.global.annotation.DateFormat;
+
+import java.time.LocalDate;
 
 public record NoticeResponse(
         Long id, String campus, String category, String title,
-        java.time.LocalDate date, Boolean isImportant, String link, String attachments
+        @DateFormat LocalDate date, Boolean isImportant, String link, String attachments
 ) {
     public static NoticeResponse of(Notice notice) {
         return new NoticeResponse(
