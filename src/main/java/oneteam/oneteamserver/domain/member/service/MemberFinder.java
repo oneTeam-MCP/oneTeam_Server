@@ -7,4 +7,5 @@ import oneteam.oneteamserver.domain.member.dto.MemberResponse;
  */
 public interface MemberFinder {
     MemberResponse find(Long memberId);
+    MemberResponse findByEmail(String email);
 }
