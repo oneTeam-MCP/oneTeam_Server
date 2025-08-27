@@ -22,17 +22,25 @@ public class Member {
     private Long id;
 
     @NaturalId
-    @Column(name = "EMAIL", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "PASSWORD", nullable = false)
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String major;
+
+    @Column(name = "PHONE_NUMBER", nullable = false)
+    private String phoneNumber;
 
     public static Member register(MemberRegisterRequest registerRequest, PasswordEncoder passwordEncoder) {
         Member member = new Member();
 
         member.email = requireNonNull(registerRequest.email());
         member.password = requireNonNull(passwordEncoder.encode(registerRequest.password()));
+        member.major = requireNonNull(registerRequest.major());
+        member.phoneNumber = requireNonNull(registerRequest.phoneNumber());
 
         return member;
     }
