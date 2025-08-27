@@ -33,7 +33,7 @@ public class SecurityConfig {
             "/actuator/health",
             "/",
             "/api/v1/auth/**",
-            "/api/v1/members/**",
+            "/api/v1/**",
     };
 
     private final RefreshTokenCacheUtil refreshTokenCacheUtil;
