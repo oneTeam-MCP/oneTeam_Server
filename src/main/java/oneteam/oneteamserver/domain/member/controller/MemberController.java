@@ -4,10 +4,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import oneteam.oneteamserver.domain.member.Member;
+import oneteam.oneteamserver.domain.member.dto.MemberDetailResponse;
 import oneteam.oneteamserver.domain.member.dto.MemberRegisterRequest;
 import oneteam.oneteamserver.domain.member.dto.MemberResponse;
 import oneteam.oneteamserver.domain.member.service.MemberFinder;
 import oneteam.oneteamserver.domain.member.service.MemberRegister;
+import oneteam.oneteamserver.global.annotation.CurrentMember;
 import oneteam.oneteamserver.global.response.SuccessResponse;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +39,14 @@ public class MemberController {
     ) {
         MemberResponse response = memberFinder.find(memberId);
         return SuccessResponse.ok(response);
+    }
+
+    @GetMapping()
+    @Operation(summary = "내 정보 조회", description = "로그인한 회원의 정보를 조회합니다.")
+    public SuccessResponse<MemberDetailResponse> findMyInfo(
+            @CurrentMember Member member
+    ) {
+        MemberDetailResponse memberDetailResponse = memberFinder.findById(member.getId());
+        return SuccessResponse.ok(memberDetailResponse);
     }
 }

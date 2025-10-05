@@ -2,6 +2,7 @@ package oneteam.oneteamserver.domain.member.service;
 
 import lombok.RequiredArgsConstructor;
 import oneteam.oneteamserver.domain.member.Member;
+import oneteam.oneteamserver.domain.member.dto.MemberDetailResponse;
 import oneteam.oneteamserver.domain.member.dto.MemberResponse;
 import oneteam.oneteamserver.domain.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,13 @@ public class MemberQueryService implements MemberFinder {
     }
 
     @Override
-    public MemberResponse findByEmail(String email) {
-        Member member = memberRepository.getByEmail(email);
-        return MemberResponse.of(member);
+    public Member findByEmail(String email) {
+        return memberRepository.getByEmail(email);
+    }
+
+    @Override
+    public MemberDetailResponse findById(Long memberId) {
+        Member member = memberRepository.getById(memberId);
+        return MemberDetailResponse.of(member);
     }
 }

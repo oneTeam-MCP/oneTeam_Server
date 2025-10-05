@@ -28,6 +28,8 @@ public class Member {
     @Column(nullable = false)
     private String password;
 
+    private String name;
+
     @Column(nullable = false)
     private String major;
 
@@ -39,6 +41,7 @@ public class Member {
 
         member.email = requireNonNull(registerRequest.email());
         member.password = requireNonNull(passwordEncoder.encode(registerRequest.password()));
+        member.name = requireNonNull(registerRequest.name());
         member.major = requireNonNull(registerRequest.major());
         member.phoneNumber = requireNonNull(registerRequest.phoneNumber());
 
