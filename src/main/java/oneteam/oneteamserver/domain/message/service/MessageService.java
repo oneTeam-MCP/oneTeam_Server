@@ -24,7 +24,7 @@ public class MessageService {
                 page,
                 size,
                 Sort.by(
-                        Sort.Order.desc("createdAt"),
+                        Sort.Order.desc("sendTime"),
                         Sort.Order.desc("id")
                 )
         );
