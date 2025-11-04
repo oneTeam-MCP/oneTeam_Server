@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Immutable
-@Table(name = "notifications")
+@Table(name = "ecampus_notifications")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Notification {
 

@@ -18,13 +18,16 @@ public class NotificationService {
 
     private final NotificationRepository notificationRepository;
 
-    public Page<NotificationResponse> getNotifications(int page, int size) {
+    public Page<NotificationResponse> getNotifications(String studentId, int page, int size) {
 
         Pageable pageable = PageRequest.of(
-                page, size, Sort.by(Sort.Order.desc("createdAt"), Sort.Order.desc("id"))
+                page,
+                size,
+                Sort.by(Sort.Order.desc("createdAt"), Sort.Order.desc("id"))
         );
 
-        Page<Notification> result = notificationRepository.findAll(pageable);
+        Page<Notification> result =
+                notificationRepository.findByUserId(studentId, pageable);
 
         return result.map(NotificationResponse::of);
     }
