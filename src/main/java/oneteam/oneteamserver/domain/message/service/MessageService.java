@@ -18,7 +18,7 @@ public class MessageService {
 
     private final MessageRepository messageRepository;
 
-    public Page<MessageResponse> getMessages(int page, int size) {
+    public Page<MessageResponse> getMyMessages(String userId, int page, int size) {
 
         Pageable pageable = PageRequest.of(
                 page,
@@ -29,7 +29,7 @@ public class MessageService {
                 )
         );
 
-        Page<Message> result = messageRepository.findAll(pageable);
+        Page<Message> result = messageRepository.findByUserId(userId, pageable);
 
         return result.map(MessageResponse::of);
     }
