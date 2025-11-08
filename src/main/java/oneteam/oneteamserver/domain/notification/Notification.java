@@ -24,7 +24,7 @@ public class Notification {
 
     private String title;
 
-    private String time_info;
+    private String timeInfo;
 
     private String content;
 
