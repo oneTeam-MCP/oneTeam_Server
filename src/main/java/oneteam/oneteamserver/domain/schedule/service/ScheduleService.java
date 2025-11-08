@@ -5,6 +5,8 @@ import oneteam.oneteamserver.domain.schedule.Schedule;
 import oneteam.oneteamserver.domain.schedule.dto.ScheduleCreateRequest;
 import oneteam.oneteamserver.domain.schedule.dto.ScheduleResponse;
 import oneteam.oneteamserver.domain.schedule.repository.ScheduleRepository;
+import oneteam.oneteamserver.global.exception.CustomException;
+import oneteam.oneteamserver.global.exception.ErrorCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,5 +39,14 @@ public class ScheduleService {
 
         Schedule saved = scheduleRepository.save(schedule);
         return ScheduleResponse.of(saved);
+    }
+
+    @Transactional
+    public void deletePersonalSchedule(String userId, Long scheduleId) {
+        Schedule schedule = scheduleRepository
+                .findByIdAndUserIdAndType(scheduleId, userId, "personal")
+                .orElseThrow(() -> new CustomException(ErrorCode.SCHEDULE_NOT_FOUND));
+
+        scheduleRepository.delete(schedule);
     }
 }

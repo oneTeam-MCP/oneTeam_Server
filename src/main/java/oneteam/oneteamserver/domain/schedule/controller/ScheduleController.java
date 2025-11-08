@@ -8,6 +8,7 @@ import oneteam.oneteamserver.domain.schedule.dto.ScheduleCreateRequest;
 import oneteam.oneteamserver.domain.schedule.dto.ScheduleResponse;
 import oneteam.oneteamserver.domain.schedule.service.ScheduleService;
 import oneteam.oneteamserver.global.annotation.CurrentMember;
+import oneteam.oneteamserver.global.response.SuccessResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,5 +36,15 @@ public class ScheduleController {
             @CurrentMember Member member
     ) {
         return scheduleService.addPersonalSchedule(request, member.getStudentId());
+    }
+
+    @DeleteMapping("/{scheduleId}")
+    @Operation(summary = "개인 일정 삭제", description = "요청 유저의 개인 일정을 삭제합니다.")
+    public SuccessResponse<String> deletePersonalSchedule(
+            @PathVariable Long scheduleId,
+            @CurrentMember Member member
+    ) {
+        scheduleService.deletePersonalSchedule(member.getStudentId(), scheduleId);
+        return SuccessResponse.ok("일정 삭제 성공");
     }
 }
