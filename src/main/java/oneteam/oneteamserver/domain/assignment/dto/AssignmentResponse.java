@@ -2,6 +2,7 @@ package oneteam.oneteamserver.domain.assignment.dto;
 
 import oneteam.oneteamserver.domain.assignment.Assignment;
 import oneteam.oneteamserver.global.annotation.DateTimeFormat;
+import oneteam.oneteamserver.global.annotation.DateTimeFormatSpace;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ public record AssignmentResponse(
         String professor,
         String week,
         String assignmentName,
-        @DateTimeFormat LocalDateTime endDate,
+        @DateTimeFormatSpace LocalDateTime endDate,
         String submissionStatus,
         String grade,
         @DateTimeFormat LocalDateTime crawledAt,
@@ -25,7 +26,7 @@ public record AssignmentResponse(
         Long daysLeft
 ) {
     private static final DateTimeFormatter DEADLINE_FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd/HH:mm");
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public static AssignmentResponse of(Assignment assignment) {
         LocalDateTime endDateTime = parseEndDate(assignment.getEnd_date());
