@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Immutable;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,19 +24,11 @@ public class Notification {
 
     private String title;
 
-    private String url;
-
-    @Column(length = 50)
-    private String type;
-
-    @Column(length = 100)
-    private String author;
-
-    private LocalDate createdDate;
-
-    private Long views;
+    private String time_info;
 
     private String content;
+
+    private String link;
 
     private LocalDateTime crawledAt;
 
