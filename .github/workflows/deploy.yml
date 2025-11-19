@@ -108,3 +108,4 @@ jobs:
             done
             test "$ok" = "1" || (echo "Healthcheck failed" && exit 1)
             docker image prune -f
+
